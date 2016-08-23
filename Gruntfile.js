@@ -1,5 +1,6 @@
 const webpack = require('webpack');
-const webpackoptions = require('./webpack.config.js');
+const webpackclient = require('./webpack.client.config');
+const webpackserver = require('./webpack.server.config');
 
 
 module.exports = grunt => {
@@ -7,14 +8,19 @@ module.exports = grunt => {
     pkg: grunt.file.readJSON('package.json'),
 
     webpack: {
-      options: webpackoptions,
+      options: [webpackclient, webpackserver],
       watch: {
         watch: true,
         keepalive: true,
       },
       build: {
-        plugins:
-          [new webpack.DefinePlugin({
+        plugins: [
+          new webpack.optimize.OccurenceOrderPlugin(),
+          new webpack.optimize.DedupePlugin(),
+          new webpack.optimize.UglifyJsPlugin({
+            compressor: { warnings: false },
+          }),
+          new webpack.DefinePlugin({
             'process.env': { NODE_ENV: JSON.stringify('production') },
           })],
       },
