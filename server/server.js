@@ -1,16 +1,14 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
+import express from 'express';
+import { Server as server } from 'http';
+
 
 const app = express();
-const server = require('http').Server(app);
 const port = process.env.PORT || 8000;
 
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(express.static(__dirname + '/../'));
+require('./middleware')(app, express);
+require('./router')(app, express);
 
-server.listen(port);
+server(app).listen(port);
 console.log(`Server is running on ' + ${port}`);
 
 module.exports = app;
