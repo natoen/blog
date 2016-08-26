@@ -1,0 +1,35 @@
+#burger {
+  display: none;
+}
+
+.homepage {
+   padding: 80px 0px;
+}
+
+.homepage img{
+  padding-bottom: 60px;
+}
+
+#navbarTitles {
+  position: fixed;
+  top: 63px;
+  right: 0px;
+}
+
+@media (max-width: 991px) {
+  #burger {
+    display: inline;
+  }
+
+  #notburger {
+    display: none;
+  }
+
+  .homepage, .homepage img {
+    padding: 5px;
+  }
+
+  #navbarTitles {
+    width: 100%;
+  }
+}

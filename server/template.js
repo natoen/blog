@@ -1,7 +1,7 @@
 export default function renderFullPage(html, preloadedState) {
   return (
     `<!DOCTYPE HTML>
-    <html>
+    <html lang="en">
       <head>
         <title>Hiroshi Matsuda</title>
         <meta charset="utf-8">
