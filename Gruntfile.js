@@ -25,7 +25,47 @@ module.exports = grunt => {
           })],
       },
     },
+
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n',
+      },
+      dist: {
+        files: {
+          'clientbundle.min.js': ['clientbundle.js'],
+          'serverbundle.min.js': ['serverbundle.js'],
+        },
+      },
+    },
+
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'client',
+          src: ['style/style.css'],
+          dest: 'client/',
+          ext: '.min.css',
+        }],
+      },
+    },
+
+    shell: {
+      removeFiles: {
+        command: 'rm *bundle.js client/style/style.css',
+        options: {
+          stdout: true,
+          stderr: true,
+          failOnError: true,
+        },
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-webpack');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-shell');
+
+  grunt.registerTask('build', ['webpack', 'cssmin', 'uglify', 'shell']);
 };
