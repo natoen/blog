@@ -9,10 +9,10 @@ module.exports = grunt => {
 
     webpack: {
       options: [webpackclient, webpackserver],
-      watch: {
-        watch: true,
-        keepalive: true,
-      },
+      // watch: {
+      //   watch: true,
+      //   keepalive: true,
+      // },
       build: {
         plugins: [
           new webpack.optimize.OccurenceOrderPlugin(),
@@ -50,9 +50,26 @@ module.exports = grunt => {
       },
     },
 
+    watch: {
+      scripts: {
+        files: [
+          'client/**/*.js',
+          'server/*.js',
+        ],
+        tasks: [
+          'webpack',
+          'uglify',
+        ],
+      },
+      css: {
+        files: 'client/style/*.css',
+        tasks: ['cssmin'],
+      },
+    },
+
     shell: {
       removeFiles: {
-        command: 'rm *bundle.js client/style/style.css',
+        command: 'rm *bundle.js',
         options: {
           stdout: true,
           stderr: true,
@@ -65,6 +82,7 @@ module.exports = grunt => {
   grunt.loadNpmTasks('grunt-webpack');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('build', ['webpack', 'cssmin', 'uglify', 'shell']);
