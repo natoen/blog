@@ -9,10 +9,6 @@ module.exports = grunt => {
 
     webpack: {
       options: [webpackclient, webpackserver],
-      // watch: {
-      //   watch: true,
-      //   keepalive: true,
-      // },
       build: {
         plugins: [
           new webpack.optimize.OccurenceOrderPlugin(),
@@ -20,9 +16,7 @@ module.exports = grunt => {
           new webpack.optimize.UglifyJsPlugin({
             compressor: { warnings: false },
           }),
-          new webpack.DefinePlugin({
-            'process.env': { NODE_ENV: JSON.stringify('production') },
-          })],
+        ],
       },
     },
 
@@ -53,8 +47,8 @@ module.exports = grunt => {
     watch: {
       scripts: {
         files: [
-          'client/**/*.js',
-          'server/*.js',
+          'client/**/*.js*',
+          'server/*.js*',
         ],
         tasks: [
           'webpack',
