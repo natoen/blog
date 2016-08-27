@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { getPosts } from './../actions/request_actions';
 import PostsList from './../components/PostsList';
 
@@ -17,14 +18,26 @@ class Homepage extends Component {
   render() {
     return (
       <div className="homepage">
-        <img
-          src="https://s3-ap-northeast-1.amazonaws.com/natoenblog/nin%CC%83asanchez.jpg"
-          className="img-fluid m-x-auto d-block"
-          style={{ borderRadius: '3%' }}
-          alt="home background"
-        />
-        {this.props.posts.length ?
-          <PostsList posts={this.props.posts} /> : <div>Loading. . . </div>}
+        <ReactCSSTransitionGroup
+          transitionName="page"
+          transitionAppear="true"
+        >
+          <img
+            src="https://s3-ap-northeast-1.amazonaws.com/natoenblog/homepagepic.jpg"
+            className="img-fluid m-x-auto d-block"
+            style={{ borderRadius: '3%' }}
+            alt="home background"
+          />
+        </ReactCSSTransitionGroup>
+          {this.props.posts.length ?
+            <ReactCSSTransitionGroup
+              transitionName="text"
+              transitionAppear="true"
+            >
+              <PostsList posts={this.props.posts} />
+            </ReactCSSTransitionGroup>
+          :
+            <div>Loading. . . </div>}
       </div>
     );
   }

@@ -33,3 +33,25 @@
     width: 100%;
   }
 }
+
+.page-appear {
+  opacity: 0.01;
+}
+
+.page-appear.page-appear-active {
+  opacity: 1;
+  transition: opacity 1s ease-in;
+}
+
+.text-appear {
+  opacity: 0.01;
+  transform: translate(0px, -15px);
+}
+
+.text-appear.text-appear-active {
+  opacity: 1;
+  transform: translate(0px, 0px);
+  transition-property: transform, opacity;
+  transition-duration: 1000ms;
+  transition-timing-function: ease-in-out;
+}

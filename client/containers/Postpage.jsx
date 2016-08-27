@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Navbar from './../components/Navbar';
 import { getPost, getPosts } from '../actions/request_actions';
+
 
 class Postpage extends Component {
   static propTypes = {
@@ -25,20 +27,30 @@ class Postpage extends Component {
     return (
       <div style={{ margin: '80px 0' }}>
         <Navbar posts={this.props.posts} />
-        <h3 style={{ font: '4rem Raleway' }}>{this.props.post.title}</h3>
-        <h6
-          style={{
-            font: '1rem Raleway',
-            color: 'silver',
-            paddingBottom: '2rem',
-          }}
+        <ReactCSSTransitionGroup
+          transitionName="page"
+          transitionAppear="true"
         >
-          {this.props.post.written}
-        </h6>
-        <div
-          style={{ font: '1.25rem Archivo Narrow' }}
-          dangerouslySetInnerHTML={{ __html: this.props.post.body }}
-        />
+          <h3 style={{ font: '4rem Raleway' }}>{this.props.post.title}</h3>
+          <h6
+            style={{
+              font: '1rem Raleway',
+              color: 'silver',
+              paddingBottom: '2rem',
+            }}
+          >
+            {this.props.post.written}
+          </h6>
+        </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+          transitionName="text"
+          transitionAppear="true"
+        >
+          <div
+            style={{ font: '1.25rem Archivo Narrow' }}
+            dangerouslySetInnerHTML={{ __html: this.props.post.body }}
+          />
+        </ReactCSSTransitionGroup>
       </div>
     );
   }
