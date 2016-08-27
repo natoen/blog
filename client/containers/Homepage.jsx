@@ -23,7 +23,8 @@ class Homepage extends Component {
           style={{ borderRadius: '3%' }}
           alt="home background"
         />
-        {this.props.posts.length ? <PostsList posts={this.props.posts} /> : <div>Loading. . . </div>}
+        {this.props.posts.length ?
+          <PostsList posts={this.props.posts} /> : <div>Loading. . . </div>}
       </div>
     );
   }
