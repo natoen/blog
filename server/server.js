@@ -9,6 +9,6 @@ require('./middleware')(app, express);
 require('./router')(app, express);
 
 server(app).listen(port, () => {
-  console.log(`Server is running on ' ${port}`);
+  console.log(`Server is running on ${port}`);
 });
 
