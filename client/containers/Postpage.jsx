@@ -19,6 +19,10 @@ class Postpage extends Component {
     this.props.getPosts();
   }
 
+  componentDidMount() {
+    $('body').find($('code')).gist();
+  }
+
   render() {
     if (!this.props.post || !this.props.posts) {
       return <div>Loading . . .</div>;
