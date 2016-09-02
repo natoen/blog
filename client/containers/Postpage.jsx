@@ -51,7 +51,7 @@ class Postpage extends Component {
           transitionAppear="true"
         >
           <div
-            style={{ font: '1.25rem Archivo Narrow' }}
+            style={{ font: '1.25rem Archivo Narrow', textAlign: 'justify' }}
             dangerouslySetInnerHTML={{ __html: this.props.post.body }}
           />
         </ReactCSSTransitionGroup>
