@@ -25,7 +25,7 @@ class Homepage extends Component {
           <img
             src="https://s3-ap-northeast-1.amazonaws.com/natoenblog/homepagepic.jpg"
             className="img-fluid m-x-auto d-block"
-            style={{ borderRadius: '3%' }}
+            style={{ maxHeight: 700 }}
             alt="home background"
           />
         </ReactCSSTransitionGroup>

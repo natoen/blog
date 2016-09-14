@@ -3,17 +3,19 @@
 }
 
 .homepage {
-   padding: 80px 0px;
+   margin: 20px 0px 80px 0px;
 }
 
-.homepage img{
-  padding-bottom: 60px;
+.homepage ul {
+  margin-top: 40px;
 }
 
 #navbarTitles {
   position: fixed;
   top: 63px;
   right: 0px;
+  border-left: 1px solid rgb(232, 232, 232);
+  border-bottom: 1px solid rgb(232, 232, 232);
 }
 
 code {
@@ -29,12 +31,20 @@ code {
     display: none;
   }
 
-  .homepage, .homepage img {
-    padding: 5px;
+  .homepage, .homepage ul {
+    margin: 5px 0px;
   }
 
   #navbarTitles {
     width: 100%;
+    text-align: center;
+    border-left: none;
+  }
+}
+
+@media (min-height: 1081px) {
+  .homepage {
+    margin: 80px 0px;
   }
 }
 
