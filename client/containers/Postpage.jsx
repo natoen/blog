@@ -19,8 +19,14 @@ class Postpage extends Component {
     this.props.getPosts();
   }
 
-  componentDidMount() {
-    $('body').find($('code')).gist();
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.id !== nextProps.params.id) {
+      this.props.getPost(nextProps.params.id);
+    }
+  }
+
+  componentDidUpdate() {
+    $('body').find('code').gist();
   }
 
   render() {
