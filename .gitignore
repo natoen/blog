@@ -2,4 +2,3 @@ node_modules/
 clientbundle.js
 serverbundle.js
 client/style/style.min.css
-clientbundle.min.js
