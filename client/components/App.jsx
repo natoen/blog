@@ -3,10 +3,7 @@ import React from 'react';
 
 export default function App(props) {
   return (
-    <div
-      className="container m-x-auto"
-      style={{ minWidth: 320, maxWidth: 600 }}
-    >
+    <div className="container m-x-auto">
       {props.children}
     </div>
   );
