@@ -41,30 +41,30 @@ li.list-group-item a {
   color: black;
 }
 
-.postpage {
+.post {
   margin: 80px 0;
 }
 
-.postpage h1 {
+.post h1 {
   font: 4rem Raleway;
 }
 
-.postpage h6 {
+.post h6 {
   font: 1rem Raleway;
   color: silver;
   padding-bottom: 2rem;
 }
 
-.postpage .body {
+.post .body {
   font: 1.25rem Archivo Narrow;
   text-align: justify
 }
 
-.postpage .body a:link {
+.post .body a:link {
   color: rgb(0,0,180);;
 }
 
-.postpage .body a:visited {
+.post .body a:visited {
   color: navy;
 }
 
@@ -72,7 +72,7 @@ li.list-group-item a {
   display: none;
 }
 
-#navbarTitles {
+#navbar-menu {
   position: fixed;
   top: 63px;
   right: 0px;
@@ -97,7 +97,7 @@ code {
     margin: 5px 0px;
   }
 
-  #navbarTitles {
+  #navbar-menu {
     width: 100%;
     text-align: center;
     border-left: none;
@@ -110,21 +110,21 @@ code {
   }
 }
 
-.page-appear {
+.page-appear, .page-enter {
   opacity: 0.01;
 }
 
-.page-appear.page-appear-active {
+.page-appear.page-appear-active, .page-enter.page-enter-active {
   opacity: 1;
   transition: opacity 1s ease-in;
 }
 
-.text-appear {
+.text-appear, .text-enter {
   opacity: 0.01;
   transform: translate(0px, -15px);
 }
 
-.text-appear.text-appear-active {
+.text-appear.text-appear-active, .text-enter.text-enter-active {
   opacity: 1;
   transform: translate(0px, 0px);
   transition-property: transform, opacity;
