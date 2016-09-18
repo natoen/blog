@@ -16,16 +16,14 @@ export default function Navbar({ posts }) {
         </Link>
         <button
           type="button" className="navbar-toggler collapsed pull-xs-right"
-          data-toggle="collapse" data-target="#navbarTitles"
-          aria-controls="navbarTitles" aria-expanded="false"
+          data-toggle="collapse" data-target="#navbar-menu"
+          aria-controls="navbar-menu" aria-expanded="false"
         >
           <span id="notburger">Posts</span><span id="burger">&#9776;</span>
         </button>
       </div>
-      <div id="navbarTitles" className="navbar-collapse collapse">
-        <ul className="nav navbar-nav">
-          {posts.length ? <PostsList posts={posts} /> : <div>Loading. . . </div>}
-        </ul>
+      <div id="navbar-menu" className="navbar-collapse collapse">
+        {posts.length ? <PostsList posts={posts} /> : <div>Loading. . . </div>}
       </div>
 
     </nav>

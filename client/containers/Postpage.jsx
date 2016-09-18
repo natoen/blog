@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Navbar from './../components/Navbar';
+import Post from './../components/Post';
 import { getPost, getPosts } from '../actions/request_actions';
 
 
@@ -19,6 +19,15 @@ class Postpage extends Component {
     this.props.getPosts();
   }
 
+  componentDidMount() {
+    $('body').click(e => {
+      if ($('.navbar-toggler').attr('aria-expanded') === 'true' &&
+          !$(e.target).parents('nav').length) {
+        $('.navbar-toggler span').click();
+      }
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.params.id !== nextProps.params.id) {
       this.props.getPost(nextProps.params.id);
@@ -30,20 +39,10 @@ class Postpage extends Component {
   }
 
   render() {
-    if (!this.props.post || !this.props.posts) {
-      return <div>Loading . . .</div>;
-    }
-
     return (
-      <div className="postpage">
+      <div>
         <Navbar posts={this.props.posts} />
-        <ReactCSSTransitionGroup transitionName="page" transitionAppear="true">
-          <h3>{this.props.post.title}</h3>
-          <h6>{this.props.post.written}</h6>
-        </ReactCSSTransitionGroup>
-        <ReactCSSTransitionGroup transitionName="text" transitionAppear="true">
-          <div dangerouslySetInnerHTML={{ __html: this.props.post.body }} />
-        </ReactCSSTransitionGroup>
+        <Post post={this.props.post} id={this.props.params.id} />
       </div>
     );
   }

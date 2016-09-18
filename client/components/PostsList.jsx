@@ -7,7 +7,12 @@ export default function PostsList({ posts }) {
     <ul className="list-group">
       {posts.sort((a, b) => a.post_number - b.post_number).map(post =>
         <li className="list-group-item" key={post.post_number}>
-          <Link to={`${post.post_number}`}>{post.title}</Link>
+          <Link
+            to={`${post.post_number}`}
+            onClick={() => { $('.navbar-toggler').click(); }}
+          >
+            {post.title}
+          </Link>
         </li>
       )}
     </ul>
