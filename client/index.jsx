@@ -13,7 +13,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router onUpdate={() => window.scrollTo(0, 0)} history={history} routes={routes} />
+    <Router onUpdate={() => { window.scrollTo(0, 0); }} history={history} routes={routes} />
   </Provider>
   , document.querySelector('.reactcontainer')
 );
