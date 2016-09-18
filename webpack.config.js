@@ -2,32 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const S3Plugin = require('webpack-s3-plugin');
+const env = process.env.AWS_ACCESS_KEY_ID ? process.env : require('./env');
 
-
-const client = {
-  entry: {
-    clientbundle: [
-      'babel-polyfill',
-      path.join(__dirname, 'client', 'style', 'style.css'),
-      path.join(__dirname, 'client', 'index.jsx'),
-    ],
-  },
-};
-
-const server = {
-  entry: {
-    serverbundle: [path.join(__dirname, 'server', 'server.js')],
-  },
-  externals: fs.readdirSync(path.resolve(__dirname, 'node_modules'))
-    .concat(['react-dom/server'])
-    .reduce((ext, mod) => Object.assign(ext, { [mod]: `commonjs ${mod}` })),
-  target: 'node',
-  node: {
-    __filename: true,
-    __dirname: true,
-  },
-  plugins: [],
-};
 
 const config = {
   output: {
@@ -51,9 +28,6 @@ const config = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': { NODE_ENV: JSON.stringify('production') },
-    }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -73,7 +47,6 @@ const config = {
         loops: true,
         hoist_funs: true,
         cascade: true,
-        drop_debugger: true,
         unsafe: true,
         hoist_vars: true,
         negate_iife: true,
@@ -88,10 +61,50 @@ const config = {
         comments: false,
       },
     }),
-    new ExtractTextPlugin('./client/style/style.min.css'),
   ],
   resolve: {
     extensions: ['', '.js', '.jsx'],
+  },
+};
+
+const client = {
+  entry: {
+    clientbundle: [
+      'babel-polyfill',
+      path.join(__dirname, 'client', 'style', 'style.css'),
+      path.join(__dirname, 'client', 'index.jsx'),
+    ],
+  },
+  plugins: config.plugins.concat([
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') },
+    }),
+    new ExtractTextPlugin('style.min.css'),
+    new S3Plugin({
+      include: /(clientbundle|style)/,
+      s3Options: {
+        accessKeyId: env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: env.AWS_SECRET_ACCESS_KEY,
+        region: env.AWS_REGION,
+      },
+      s3UploadOptions: {
+        Bucket: env.S3_BUCKET_NAME,
+      },
+    }),
+  ]),
+};
+
+const server = {
+  entry: {
+    serverbundle: [path.join(__dirname, 'server', 'server.js')],
+  },
+  externals: fs.readdirSync(path.resolve(__dirname, 'node_modules'))
+    .concat(['react-dom/server'])
+    .reduce((ext, mod) => Object.assign(ext, { [mod]: `commonjs ${mod}` })),
+  target: 'node',
+  node: {
+    __filename: true,
+    __dirname: true,
   },
 };
 
