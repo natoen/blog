@@ -28,9 +28,11 @@ class Homepage extends Component {
   render() {
     return (this.props.imageLoaded ?
       <div className="homepage">
-        <ReactCSSTransitionGroup transitionName="page" transitionAppear="true">
-          {images.homepage}
-        </ReactCSSTransitionGroup>
+        <div className="table">
+          <ReactCSSTransitionGroup transitionName="page" transitionAppear="true">
+            {images.homepage}
+          </ReactCSSTransitionGroup>
+        </div>
         <PostsList posts={this.props.posts} />
       </div>
       :

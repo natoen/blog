@@ -1,14 +1,22 @@
 .container {
   min-width: 320px;
-  max-width: 600px;
+  max-width: 767px;
 }
 
-.homepage {
-   margin: 40px 0px 80px 0px;
+.table {
+  display: table;
+  height: 100vh;
+  margin: 0px;
+}
+
+.table > * {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .homepage ul {
-  margin-top: 52px;
+  margin: 0px auto 80px;
+  max-width: 525px;
 }
 
 .homepage img {
@@ -30,10 +38,14 @@
   z-index: 1;
 }
 
+#navbar-menu ul li {
+  padding: 0.5rem 1.25rem;
+}
+
 li.list-group-item {
   font: 1.5rem News Cycle;
   color: #000000;
-  padding: 0.5rem 1.25rem;
+  padding: 0.5rem 0rem;
   border: none;
 }
 
@@ -42,7 +54,7 @@ li.list-group-item a {
 }
 
 .post {
-  margin: 80px 0;
+  margin: 80px 10px;
 }
 
 .post h1 {
@@ -84,7 +96,7 @@ code {
   padding: 0px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 767px) {
   #burger {
     display: inline;
   }
@@ -93,20 +105,23 @@ code {
     display: none;
   }
 
-  .homepage, .homepage ul {
-    margin: 5px 0px;
+  .container, .homepage, .homepage ul {
+    margin: 0px auto;
+    padding: 0px;
+  }
+
+  .table {
+    height: inherit;
+  }
+
+  .homepage ul {
+    padding: 10px;
   }
 
   #navbar-menu {
     width: 100%;
     text-align: center;
     border-left: none;
-  }
-}
-
-@media (min-height: 1081px) {
-  .homepage {
-    margin: 80px 0px;
   }
 }
 
