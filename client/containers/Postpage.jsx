@@ -20,7 +20,7 @@ class Postpage extends Component {
   }
 
   componentDidMount() {
-    $('body').click(e => {
+    $('body').on('click touchstart', e => {
       if ($('.navbar-toggler').attr('aria-expanded') === 'true' &&
           !$(e.target).parents('nav').length) {
         $('.navbar-toggler span').click();
