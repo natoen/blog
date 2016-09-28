@@ -12,6 +12,7 @@ class Post extends Component {
   }
 
   componentWillMount() {
+    this.props.post = null;
     this.props.getPost(this.props.params.title);
   }
 
