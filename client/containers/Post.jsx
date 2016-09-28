@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { getPost } from '../actions/request_actions';
+import { getPost, resetPost } from '../actions/request_actions';
 
 
 class Post extends Component {
   static propTypes = {
     params: React.PropTypes.object,
     getPost: React.PropTypes.func,
+    resetPost: React.PropTypes.func,
     post: React.PropTypes.object,
   }
 
   componentWillMount() {
-    this.props.post = null;
-    this.props.getPost(this.props.params.title);
+    this.props.getPost(this.props.params.post_url_path);
   }
 
   componentDidMount() {
@@ -26,13 +26,18 @@ class Post extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.params.title !== nextProps.params.title) {
-      this.props.getPost(nextProps.params.title);
+    if (this.props.params.post_url_path !== nextProps.params.post_url_path) {
+      this.props.resetPost();
+      this.props.getPost(nextProps.params.post_url_path);
     }
   }
 
   componentDidUpdate() {
     $('body').find('code').gist();
+  }
+
+  componentWillUnmount() {
+    this.props.resetPost();
   }
 
   render() {
@@ -47,7 +52,7 @@ class Post extends Component {
         </ReactCSSTransitionGroup>
       </div>
       :
-      <div>Loading. . . </div>
+      <div className="post"></div>
     );
   }
 }
@@ -57,4 +62,4 @@ function mapStateToProps(state) {
   return { post: state.data.post };
 }
 
-export default connect(mapStateToProps, { getPost })(Post);
+export default connect(mapStateToProps, { getPost, resetPost })(Post);

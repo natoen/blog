@@ -34,7 +34,7 @@ module.exports = (app, express) => {
   const router = express.Router();
 
   router.get('/posts', controllers.posts.get);
-  router.route('/post/:title')
+  router.route('/post/:post_url_path')
     .get(controllers.post.get);
     // .post(controllers.posts.post)
     // .put(controllers.posts.put)

@@ -9,7 +9,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Homepage} />
     <Route path="posts/" component={Postpage}>
-      <Route path=":title" component={Post} />
+      <Route path=":post_url_path" component={Post} />
     </Route>
   </Route>
 );

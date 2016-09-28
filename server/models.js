@@ -4,7 +4,7 @@ import db from './db';
 module.exports = {
   posts: {
     get(callback) {
-      db.any('SELECT post_number,title,array_to_json(tags),written,edited FROM posts')
+      db.any('SELECT post_number,title,url_path FROM posts')
         .then(data => {
           callback(data);
         })
@@ -17,7 +17,7 @@ module.exports = {
 
   post: {
     get(param, callback) {
-      db.any('SELECT post_number,title,array_to_json(tags),body,written,created,edited FROM posts WHERE title=$1', param)
+      db.any('SELECT post_number,title,array_to_json(tags),body,written,edited FROM posts WHERE url_path=$1', param)
         .then(data => {
           callback(data);
         })

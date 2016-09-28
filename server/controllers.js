@@ -16,7 +16,7 @@ module.exports = {
 
   post: {
     get(req, res) {
-      models.post.get([req.params.title], (data, error) => {
+      models.post.get([req.params.post_url_path], (data, error) => {
         if (error) {
           res.status(500).end();
         } else {
