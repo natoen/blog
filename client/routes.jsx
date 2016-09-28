@@ -3,10 +3,13 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import Homepage from './containers/Homepage';
 import Postpage from './containers/Postpage';
+import Post from './containers/Post';
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Homepage} />
-    <Route path=":id" component={Postpage} />
+    <Route path="posts/" component={Postpage}>
+      <Route path=":title" component={Post} />
+    </Route>
   </Route>
 );

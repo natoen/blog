@@ -17,7 +17,7 @@ module.exports = {
 
   post: {
     get(param, callback) {
-      db.any('SELECT post_number,title,array_to_json(tags),body,written,created,edited FROM posts WHERE post_number=$1', param)
+      db.any('SELECT post_number,title,array_to_json(tags),body,written,created,edited FROM posts WHERE title=$1', param)
         .then(data => {
           callback(data);
         })

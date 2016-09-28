@@ -9,8 +9,8 @@ export function getPosts() {
   };
 }
 
-export function getPost(id) {
-  const data = axios.get(`/api/post/${id}`);
+export function getPost(title) {
+  const data = axios.get(`/api/post/${title}`);
   return {
     type: 'GET_POST',
     payload: data,
