@@ -36,7 +36,7 @@ class Post extends Component {
 
   render() {
     return (this.props.post ?
-      <div className="post" key={this.props.post.id}>
+      <div className="post" key={this.props.post.post_number}>
         <ReactCSSTransitionGroup transitionName="page" transitionAppear="true">
           <h1>{this.props.post.title}</h1>
           <h6>{this.props.post.written}</h6>
