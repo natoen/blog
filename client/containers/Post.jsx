@@ -43,16 +43,22 @@ class Post extends Component {
   render() {
     return (this.props.post ?
       <div className="post" key={this.props.post.post_number}>
-        <ReactCSSTransitionGroup transitionName="page" transitionAppear="true">
+        <ReactCSSTransitionGroup
+          transitionName="page" transitionAppear transitionAppearTimeout={1000}
+          transitionEnterTimeout={1000} transitionLeaveTimeout={0}
+        >
           <h1>{this.props.post.title}</h1>
           <h6>{this.props.post.written}</h6>
         </ReactCSSTransitionGroup>
-        <ReactCSSTransitionGroup transitionName="text" transitionAppear="true">
+        <ReactCSSTransitionGroup
+          transitionName="text" transitionAppear transitionAppearTimeout={1000}
+          transitionEnterTimeout={1000} transitionLeaveTimeout={0}
+        >
           <div className="body" dangerouslySetInnerHTML={{ __html: this.props.post.body }} />
         </ReactCSSTransitionGroup>
       </div>
       :
-      <div className="post"></div>
+      <div className="post" />
     );
   }
 }

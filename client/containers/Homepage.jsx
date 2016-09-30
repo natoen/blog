@@ -10,17 +10,17 @@ const images = [];
 
 class Homepage extends Component {
   static propTypes = {
-    posts: React.PropTypes.array,
     getPosts: React.PropTypes.func,
-    imageLoaded: React.PropTypes.boolean,
     imageLoader: React.PropTypes.func,
+    posts: React.PropTypes.array,
+    imageLoaded: React.PropTypes.bool,
   }
 
   componentWillMount() {
     this.props.getPosts();
     images.homepage = (<img
       src="https://s3-ap-northeast-1.amazonaws.com/natoenblog/homepage.jpg"
-      className="img-fluid m-x-auto d-block" alt="home background"
+      className="img-fluid m-x-auto d-block" key="homepage" alt="home background"
       onLoad={() => { this.props.imageLoader(true); }}
     />);
   }
@@ -29,7 +29,10 @@ class Homepage extends Component {
     return (this.props.imageLoaded ?
       <div className="homepage">
         <div className="table">
-          <ReactCSSTransitionGroup transitionName="page" transitionAppear="true">
+          <ReactCSSTransitionGroup
+            transitionName="page" transitionAppear transitionAppearTimeout={1000}
+            transitionEnterTimeout={1000} transitionLeaveTimeout={0}
+          >
             {images.homepage}
           </ReactCSSTransitionGroup>
         </div>
