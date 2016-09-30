@@ -6,6 +6,8 @@
   "scripts": {
     "postinstall": "webpack --progress --colors",
     "start": "node serverbundle.js",
+    "compile": "webpack --config dev/webpack.config.js --watch",
+    "dev": "NODE_ENV=development node serverbundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
