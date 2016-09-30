@@ -23,7 +23,7 @@ const serve = (req, res) => {
           <RouterContext {...renderProps} />
         </Provider>
       );
-      res.status(200).send(template(html, store.getState()));
+      res.status(200).send(template(html, store.getState(), process.env.NODE_ENV));
     } else {
       res.redirect(302, '/');
     }
