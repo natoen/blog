@@ -1,6 +1,8 @@
 node_modules/
-clientbundle.js
 serverbundle.js
 client/images
-style.min.css
 env.js
+clientbundle.js
+style.min.css
+dev/clientbundle.js
+dev/style.min.css
