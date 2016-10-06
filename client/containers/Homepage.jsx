@@ -39,7 +39,7 @@ class Homepage extends Component {
         <PostsList posts={this.props.posts} />
       </div>
       :
-      <div>Loading. . .
+      <div>
         <div style={{ opacity: 0 }}>{Object.keys(images).map(prop => images[prop])}</div>
       </div>
     );
